@@ -1,8 +1,5 @@
-import useSWR from "swr";
 import Image from "next/image";
 import styled from "styled-components";
-
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const StyledImage = styled(Image)`
   width: 100%;
@@ -20,24 +17,20 @@ const StyledHeader2 = styled.h2`
   margin-top: 5px;
 `;
 
-export default function Spotlight() {
-  const { data, isLoading } = useSWR(
-    "https://example-apis.vercel.app/api/art",
-    fetcher
-  );
+export default function Spotlight({ pieces, isLoading }) {
   if (isLoading) return <h2>Loading...</h2>;
-  let index = Math.floor(Math.random() * data.length);
+  let index = Math.floor(Math.random() * pieces.length);
 
   return (
     <div>
       <StyledImage
-        src={data[index].imageSource}
-        width={data[index].dimensions.width}
-        height={data[index].dimensions.height}
-        alt={data[index].name}
+        src={pieces[index].imageSource}
+        width={pieces[index].dimensions.width}
+        height={pieces[index].dimensions.height}
+        alt={pieces[index].name}
       />
-      <StyledHeader>{data[index].name}</StyledHeader>
-      <StyledHeader2>{data[index].artist}</StyledHeader2>
+      <StyledHeader>{pieces[index].name}</StyledHeader>
+      <StyledHeader2>{pieces[index].artist}</StyledHeader2>
     </div>
   );
 }

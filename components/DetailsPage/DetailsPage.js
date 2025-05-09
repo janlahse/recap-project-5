@@ -1,26 +1,23 @@
-import useSWR from "swr";
+import Image from "next/image";
 import Link from "next/link";
 
-const fetcher = (...args) => fetch(...args).then((response) => response.json());
-
-export function DetailsPage() {
-  const { data, error } = useSWR(
-    "https://example-apis.vercel.app/api/art",
-    fetcher
-  );
-
-  if (error) return <div>(error.message)</div>;
-  if (!data) return <div>Loading...</div>;
-
-  const art = data[0];
+export function DetailsPage({ pieces, isLoading }) {
+  if (isLoading) return <h2>Loading...</h2>;
+  const index = 0;
 
   return (
     <div>
-      <img src={art.imageSource} alt={art.name} width="400" />
-      <h1>{art.name}</h1>
-      <p>Artist: {art.artist}</p>
-      <p>Year: {art.year}</p>
-      <p>Genre: {art.genre}</p>
+      <Image
+        src={pieces[index].imageSource}
+        width={500}
+        height={500}
+        quality={70}
+        alt={pieces[index].name}
+      />
+      <h1>{pieces[index].name}</h1>
+      <p>Artist: {pieces[index].artist}</p>
+      <p>Year: {pieces[index].year}</p>
+      <p>Genre: {pieces[index].genre}</p>
       <Link href="#">
         <button>Back to list</button>
       </Link>
