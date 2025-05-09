@@ -15,6 +15,7 @@ export default function Pieces({ pieces, isLoading }) {
             title={piece.name}
             image={piece.imageSource}
             artist={piece.artist}
+            slug={piece.slug}
           />
         </StyledLi>
       ))}
