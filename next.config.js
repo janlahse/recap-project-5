@@ -13,6 +13,13 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: "example-apis.vercel.app",
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
