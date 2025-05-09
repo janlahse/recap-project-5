@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout/Layout.js";
 import GlobalStyle from "../styles";
 import useSWR from "swr";
 
@@ -31,8 +32,10 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <GlobalStyle />
-      <Component {...pageProps} pieces={data} isLoading={isLoading} />
+      <Layout>
+        <GlobalStyle />
+        <Component {...pageProps} pieces={data} isLoading={isLoading} />
+      </Layout>
     </>
   );
 }
