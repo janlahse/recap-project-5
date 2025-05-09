@@ -16,6 +16,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
+        protocol: "https",
         hostname: "example-apis.vercel.app",
       },
     ],
