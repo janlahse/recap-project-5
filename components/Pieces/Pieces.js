@@ -1,16 +1,22 @@
 import PiecesPreview from "../PiecesPreview/PiecesPreview";
+import styled from "styled-components";
 
-export default function Pieces({ pieces }) {
+const StyledLi = styled.li`
+  list-style: none;
+`;
+
+export default function Pieces({ pieces, isLoading }) {
+  if (isLoading) return <h2>Loading...</h2>;
   return (
     <ul>
       {pieces.map((piece) => (
-        <li key={piece.slug}>
+        <StyledLi key={piece.slug}>
           <PiecesPreview
             title={piece.name}
             image={piece.imageSource}
             artist={piece.artist}
           />
-        </li>
+        </StyledLi>
       ))}
     </ul>
   );

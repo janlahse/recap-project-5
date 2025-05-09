@@ -21,9 +21,9 @@ export default function App({ Component, pageProps }) {
     fetcher
   );
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Component {...pageProps} pieces={data} />
+      <Component {...pageProps} pieces={data} isLoading={isLoading} />
     </>
   );
 }
