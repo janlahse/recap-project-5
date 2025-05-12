@@ -2,6 +2,8 @@ import Layout from "@/components/Layout/Layout.js";
 import GlobalStyle from "../styles";
 import useSWR from "swr";
 
+const favoriteSlugs = ["orange-red-and-green", "man-digital-illustration"];
+
 const fetcher = async (url) => {
   const res = await fetch(url);
 
@@ -34,7 +36,12 @@ export default function App({ Component, pageProps }) {
     <>
       <Layout>
         <GlobalStyle />
-        <Component {...pageProps} pieces={data} isLoading={isLoading} />
+        <Component
+          {...pageProps}
+          pieces={data}
+          isLoading={isLoading}
+          favoriteSlugs={favoriteSlugs}
+        />
       </Layout>
     </>
   );

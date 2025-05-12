@@ -46,7 +46,7 @@ export default function Navigation() {
         <StyledLink1 href="/gallery-pieces">Gallery</StyledLink1>
       </li>
       <li>
-        <StyledLink2 href="/">Favorites</StyledLink2>
+        <StyledLink2 href="/favorites">Favorites</StyledLink2>
       </li>
     </StyledNavigation>
   );
