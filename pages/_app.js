@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout/Layout.js";
 import GlobalStyle from "../styles";
 import useSWR from "swr";
 import useLocalStorageState from "use-local-storage-state";
