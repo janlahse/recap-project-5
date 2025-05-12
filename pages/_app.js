@@ -1,8 +1,7 @@
 import Layout from "@/components/Layout/Layout.js";
 import GlobalStyle from "../styles";
 import useSWR from "swr";
-
-const favoriteSlugs = ["orange-red-and-green", "man-digital-illustration"];
+import useLocalStorageState from "use-local-storage-state";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -24,12 +23,25 @@ export default function App({ Component, pageProps }) {
     fetcher
   );
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+  const [favoriteSlugs, setFavoriteSlugs] = useLocalStorageState(
+    "favoriteSlugs",
+    {
+      defaultValue: [],
+    }
+  );
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
+  function toggleFavorite(slugToToggle) {
+    setFavoriteSlugs((prevFavoriteSlugs) => {
+      if (prevFavoriteSlugs.includes(slugToToggle)) {
+        return prevFavoriteSlugs.filter((slug) => slug !== slugToToggle);
+      } else {
+        return [...prevFavoriteSlugs, slugToToggle];
+      }
+    });
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -41,6 +53,7 @@ export default function App({ Component, pageProps }) {
           pieces={data}
           isLoading={isLoading}
           favoriteSlugs={favoriteSlugs}
+          onToggleFavorite={toggleFavorite}
         />
       </Layout>
     </>

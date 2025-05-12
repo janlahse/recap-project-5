@@ -1,5 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
+import { FavoriteButton } from "../FavoriteButton/FavoriteButton";
+import { useEffect, useState } from "react";
 
 const StyledImage = styled(Image)`
   width: 100%;
@@ -17,20 +19,38 @@ const StyledHeader2 = styled.h2`
   margin-top: 5px;
 `;
 
-export default function Spotlight({ pieces, isLoading }) {
-  if (isLoading) return <h2>Loading...</h2>;
-  let index = Math.floor(Math.random() * pieces.length);
+export default function Spotlight({
+  pieces,
+  favoriteSlugs,
+  isLoading,
+  onToggleFavorite,
+}) {
+  const [piece, setPiece] = useState(null);
+
+  useEffect(() => {
+    const index = Math.floor(Math.random() * pieces.length);
+    setPiece(pieces[index]);
+  }, [pieces, piece]);
+
+  if ((isLoading && !pieces) || !piece) return <h2>Loading...</h2>;
+
+  const isFavorite = favoriteSlugs.includes(piece.slug);
 
   return (
     <div>
-      <StyledImage
-        src={pieces[index].imageSource}
-        width={pieces[index].dimensions.width}
-        height={pieces[index].dimensions.height}
-        alt={pieces[index].name}
+      <FavoriteButton
+        onToggleFavorite={onToggleFavorite}
+        isFavorite={isFavorite}
+        slug={piece.slug}
       />
-      <StyledHeader>{pieces[index].name}</StyledHeader>
-      <StyledHeader2>{pieces[index].artist}</StyledHeader2>
+      <StyledImage
+        src={piece.imageSource}
+        width={piece.dimensions.width}
+        height={piece.dimensions.height}
+        alt={piece.name}
+      />
+      <StyledHeader>{piece.name}</StyledHeader>
+      <StyledHeader2>{piece.artist}</StyledHeader2>
     </div>
   );
 }

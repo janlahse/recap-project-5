@@ -33,6 +33,7 @@ export default function PiecesPreview({
   artist,
   slug,
   dimensions,
+  onToggleFavorite,
 }) {
   return (
     <StyledDiv>
