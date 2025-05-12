@@ -42,6 +42,7 @@ export default function PiecesPreview({
           alt={title}
           width={dimensions.width}
           height={dimensions.height}
+          quality={70}
         />
       </Link>
       <StyledDiv2>

@@ -19,7 +19,7 @@ export default function PiecesDetailPage({ pieces, isLoading }) {
   return (
     <DetailsPage
       image={piece.imageSource}
-      name={piece.title}
+      name={piece.name}
       artist={piece.artist}
       year={piece.year}
       genre={piece.genre}
