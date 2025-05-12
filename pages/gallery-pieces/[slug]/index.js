@@ -24,6 +24,7 @@ export default function PiecesDetailPage({ pieces, isLoading }) {
       year={piece.year}
       genre={piece.genre}
       isLoading={isLoading}
+      dimensions={piece.dimensions}
     />
   );
 }
