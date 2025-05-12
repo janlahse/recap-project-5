@@ -8,7 +8,7 @@ const StyledLi = styled.li`
   margin-bottom: 30px;
 `;
 
-export default function Pieces({ pieces, isLoading, favoriteSlugs }) {
+export default function Pieces({ pieces, isLoading, favoriteSlugs, onToggleFavorite }) {
   if (isLoading) return <h2>Loading...</h2>;
 
   //if favSlugs is passed: display filtered pieces
@@ -31,6 +31,7 @@ export default function Pieces({ pieces, isLoading, favoriteSlugs }) {
             artist={piece.artist}
             slug={piece.slug}
             dimensions={piece.dimensions}
+            onToggleFavorite={onToggleFavorite}
           />
         </StyledLi>
       ))}

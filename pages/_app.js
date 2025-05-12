@@ -46,14 +46,16 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <GlobalStyle />
-      <Component
-        {...pageProps}
-        pieces={data}
-        isLoading={isLoading}
-        favoriteSlugs={favoriteSlugs}
-        onToggleFavorite={toggleFavorite}
-      />
+      <Layout>
+        <GlobalStyle />
+        <Component
+          {...pageProps}
+          pieces={data}
+          isLoading={isLoading}
+          favoriteSlugs={favoriteSlugs}
+          onToggleFavorite={toggleFavorite}
+        />
+      </Layout>
     </>
   );
 }
